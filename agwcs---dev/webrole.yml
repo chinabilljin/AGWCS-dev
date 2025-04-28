@@ -1,0 +1,20 @@
+- adx_anonymoususersrole: true
+  adx_authenticatedusersrole: false
+  adx_name: Anonymous Users
+  adx_webroleid: 3d467292-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_anonymoususersrole: false
+  adx_authenticatedusersrole: false
+  adx_name: C1 ASP
+  adx_webroleid: 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_anonymoususersrole: false
+  adx_authenticatedusersrole: false
+  adx_name: Administrators
+  adx_webroleid: 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_anonymoususersrole: false
+  adx_authenticatedusersrole: false
+  adx_name: Teacher
+  adx_webroleid: f921b747-9400-f011-bae2-000d3a1cd9e6
+- adx_anonymoususersrole: false
+  adx_authenticatedusersrole: true
+  adx_name: Authenticated Users
+  adx_webroleid: ff36659e-e4f9-ef11-be1f-000d3a1cd9e6

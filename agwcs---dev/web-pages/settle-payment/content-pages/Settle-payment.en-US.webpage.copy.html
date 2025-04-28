@@ -1,0 +1,146 @@
+{% include 'Portal Web API Wrapper' %}<!-- Load Web API Helper -->
+<script src="/webresources/msdyn_/scripts/webapi.js"></script>
+<!-- Payment UI Container -->
+<div style="max-width: 600px; margin: auto; font-family: Arial, sans-serif; padding: 20px;">
+  <!-- Payment Input Section -->
+  <div id="payment-section">
+    <h2>Submit a Payment</h2>
+    <label>Identifier Code<span style="color: red;">*</span></label
+    ><input type="text" id="identifierCode" class="input" style="width: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 6px; margin-right: 0px; margin-bottom: 16px; margin-left: 0px; box-sizing: border-box;" /><label>Amount<span style="color: red;">*</span></label
+    ><input type="number" id="amount" class="input" style="width: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 6px; margin-right: 0px; margin-bottom: 16px; margin-left: 0px; box-sizing: border-box;" /><label>Payment Date</label><input type="date" id="paymentDate" class="input" style="width: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 6px; margin-right: 0px; margin-bottom: 16px; margin-left: 0px; box-sizing: border-box;" /><label>Payment Provider<span style="color: red;">*</span></label
+    ><select id="paymentProvider" class="input" style="width: 100%; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 6px; margin-right: 0px; margin-bottom: 16px; margin-left: 0px; box-sizing: border-box;">
+      <option value="">Select Provider</option>
+      <option value="1">Cash</option>
+      <option value="2">Check</option>
+      <option value="3">Zelle</option>
+      <option value="4">Free credit</option>
+      <option value="5">Other</option></select
+    ><button id="submitPayment" class="button" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; background-color: rgb(0, 120, 212); color: white; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; cursor: pointer;">Submit</button>
+  </div>
+  <!-- Confirmation Section -->
+  <div id="confirmation-section" style="display: none;">
+    <h3>
+      Confirm Payment for <strong><span id="userFullName"></span></strong>
+    </h3>
+    <p>
+      Do you want to settle this payment <strong><span id="pp_amount"></span></strong>?
+    </p>
+    <button id="confirmYes" class="button" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; background-color: rgb(0, 120, 212); color: white; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; cursor: pointer;">Yes</button><button id="confirmNo" class="button" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; background-color: rgb(0, 120, 212); color: white; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; cursor: pointer;">No</button>
+  </div>
+  <!-- Success Section -->
+  <div id="success-section" style="display: none; color: green;">
+    <h3>Payment Submitted</h3>
+    <p><strong>Identifier:</strong> <span id="successIdentifier"></span></p>
+    <p><strong>Amount:</strong> <span id="successAmount"></span></p>
+    <p><strong>Date:</strong> <span id="successDate"></span></p>
+    <p><strong>Provider:</strong> <span id="successProvider"></span></p>
+    <p>The customer's due amount will be updated in a few minutes.</p>
+    <button onclick="window.location.href = window.location.origin + window.location.pathname" class="button" style="padding-top: 10px; padding-right: 20px; padding-bottom: 10px; padding-left: 20px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; background-color: rgb(0, 120, 212); color: white; border-top-width: initial; border-right-width: initial; border-bottom-width: initial; border-left-width: initial; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: initial; border-image-source: initial; border-image-slice: initial; border-image-width: initial; border-image-outset: initial; border-image-repeat: initial; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px; cursor: pointer;">Input next payment</button>
+  </div>
+  <!-- Error/Info Message -->
+  <div id="message" style="color: red;"></div>
+</div>
+<!-- Styles --><!-- Script -->
+<script>
+  let contactInfo = null;
+
+  // Auto-fill from URL
+  window.addEventListener("DOMContentLoaded", function () {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("id")) document.getElementById("identifierCode").value = params.get("id");
+    if (params.has("amt")) document.getElementById("amount").value = params.get("amt");
+    if (params.has("date")) document.getElementById("paymentDate").value = params.get("date");
+    if (params.has("provider")) document.getElementById("paymentProvider").value = params.get("provider");
+  });
+
+  document.getElementById("submitPayment").addEventListener("click", function () {
+    document.getElementById("submitPayment").innerText = "Searching ...";
+    document.getElementById("submitPayment").disabled = true;
+
+    const identifierCode = document.getElementById("identifierCode").value.trim();
+    const amount = document.getElementById("amount").value.trim();
+    const paymentDate = document.getElementById("paymentDate").value;
+    const paymentProvider = document.getElementById("paymentProvider").value;
+
+    if (!identifierCode || !amount || !paymentProvider) {
+      document.getElementById("message").innerText = "Identifier, Amount, and Provider are required.";
+      return;
+    }
+
+    document.getElementById("message").innerText = "Validating contact...";
+
+    webapi.safeAjax({
+      type: "GET",
+      url: `/_api/contacts?$select=contactid,cr635_dueamount,cr635_fee,fullname,cr635_paid&$filter=(cr635_payeridentifier eq '${identifierCode}')`,
+      contentType: "application/json",
+      headers: { "Prefer": "odata.include-annotations=*" },
+      success: function (data) {
+        const results = data.value;
+        if (results.length > 1) {
+          document.getElementById("message").innerText = "Duplicate Identifier Code found. Please contact system admin.";
+        } else if (results.length === 1) {
+          contactInfo = results[0];
+          document.getElementById("userFullName").innerText = contactInfo.fullname;
+          document.getElementById("pp_amount").innerText = amount;
+          document.getElementById("payment-section").style.display = "none";
+          document.getElementById("confirmation-section").style.display = "block";
+          document.getElementById("message").innerText = "";
+        } else {
+          document.getElementById("message").innerText = "No contact found with that Identifier Code.";
+        }
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        document.getElementById("message").innerText = "Error occurred during contact validation.";
+      }
+    });
+  });
+
+  document.getElementById("confirmYes").addEventListener("click", function () {
+
+    document.getElementById("confirmYes").disabled = true;
+    document.getElementById("confirmNo").disabled = true;
+    document.getElementById("confirmYes").innerText = 'Settling ...'
+
+    const identifierCode = document.getElementById("identifierCode").value.trim();
+    const amount = document.getElementById("amount").value.trim();
+    const paymentDate = document.getElementById("paymentDate").value;
+    const paymentProvider = document.getElementById("paymentProvider").value;
+
+    const record = {};
+    record["pp_User@odata.bind"] = `/contacts(${contactInfo.contactid})`;
+    record.pp_amount = Number(parseFloat(amount).toFixed(4));
+    record.pp_paymentidentifier = identifierCode;
+    record.pp_paymentstatus = 3;
+    record.pp_paymenttime = paymentDate ? new Date(paymentDate).toISOString() : new Date().toISOString();
+    record.pp_provider = parseInt(paymentProvider);
+
+    webapi.safeAjax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/_api/pp_payments",
+      data: JSON.stringify(record),
+      success: function (data, textStatus, xhr) {
+        document.getElementById("confirmation-section").style.display = "none";
+        document.getElementById("success-section").style.display = "block";
+        document.getElementById("successIdentifier").innerText = identifierCode;
+        document.getElementById("successAmount").innerText = `${amount}`;
+        document.getElementById("successDate").innerText = paymentDate || "Today";
+        document.getElementById("successProvider").innerText = document.querySelector(`#paymentProvider option[value="${paymentProvider}"]`).innerText;
+      },
+      error: function (xhr) {
+        console.log(xhr);
+        document.getElementById("message").innerText = "Failed to create payment.";
+      }
+    });
+  });
+
+  document.getElementById("confirmNo").addEventListener("click", function () {
+    document.getElementById("confirmation-section").style.display = "none";
+    document.getElementById("payment-section").style.display = "block";
+    document.getElementById("message").innerText = "Payment cancelled.";
+  });
+</script>
+<div class="row sectionBlockLayout text-start" style="display: flex; flex-wrap: wrap; margin: 0px; min-height: auto; padding: 8px;">
+  <div class="container" style="padding: 0px; display: flex; flex-wrap: wrap;"><div class="col-lg-12 columnBlockLayout" style="flex-grow: 1; display: flex; flex-direction: column; min-width: 250px;"></div></div>
+</div>

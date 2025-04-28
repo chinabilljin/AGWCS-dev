@@ -1,0 +1,67 @@
+{% include 'Portal Web API Wrapper' %} 
+
+{% if request.params['id'] | xml_escape %} 
+  {% assign teacher_id = request.params['id'] | xml_escape %} 
+
+  {% fetchxml teachers %}
+  <fetch>
+    <entity name="cr635_teacherintro">
+      <attribute name="cr635_intro" />
+      <filter>
+        <condition attribute="cr635_contact" operator="eq" value="{{ teacher_id }}" />
+      </filter>
+    </entity>
+  </fetch>
+  {% endfetchxml %} 
+  {% fetchxml courses %}
+  <fetch>
+    <entity name="msdynce_course">
+      <attribute name="msdynce_courseid" />
+      <attribute name="msdynce_coursename" />
+      <filter>
+        <condition attribute="msdynce_instructorname" operator="eq" value="{{ teacher_id }}" />
+      </filter>
+      <order attribute="msdynce_coursename" descending="false" />
+    </entity>
+  </fetch>
+  {% endfetchxml %} 
+{% else %}
+
+  <p>No id param found !</p>
+
+{% endif %}
+
+<div class="row sectionBlockLayout text-start" style="min-height: auto; padding: 8px;">
+  <div class="container" style="display: flex; flex-wrap: wrap;">
+    <div class="col-lg-12 columnBlockLayout" style="padding: 16px; margin: 60px 0px; min-height: 200px;">
+      {% if  courses.results.entities.size  %}
+        <p>Course:</p>
+        {% for course in courses.results.entities %}
+
+          {% if course %}
+
+        <a class="course" href="{{ sitemarkers['View Course Details'].url }}?id={{ course.msdynce_courseid }}">{{ course.msdynce_coursename }}</a> <br />
+          {% endif %}
+        {% endfor %} 
+      {% endif %} 
+      
+      {% if teachers.results.entities.size %}
+
+        <div class="rich-text-content">{{ teachers.results.entities[0].cr635_intro | replace: '/api/data/v9.1', '/_api' | replace: '\\n', '' | html_safe_escape | replace: '%5c%22', '' }}</div>
+
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  .rich-text-content img {
+    max-width: 100%;
+    height: auto !important;
+    width: auto !important;
+    display: block;
+    object-fit: contain;
+  }
+</style>

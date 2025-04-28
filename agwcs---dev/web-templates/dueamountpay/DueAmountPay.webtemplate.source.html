@@ -1,0 +1,35 @@
+{% fetchxml attendees %}
+<fetch distinct="false" mapping="logical" output-format="xml-platform" version="1.0">
+  <entity name="contact" >
+    <attribute name="cr635_dueamount" />
+    <attribute name="contactid" />
+    <attribute name="firstname" />
+    <attribute name="lastname" />
+    <attribute name="parentcustomerid" /> 
+    <attribute name="cr635_paid" />
+    <attribute name="cr635_fee" />
+    <attribute name="cr635_payeridentifier" />
+    <filter>
+      <condition attribute="contactid" operator="eq" value="{{user.contactid}}" />
+    </filter>
+  </entity>
+</fetch>
+{% endfetchxml %}
+
+
+{% if attendees.results and attendees.results.entities %}
+    {% assign attendeeResults = attendees.results.entities %}
+    {% assign first_attendee = attendeeResults[0] %}
+    {% assign chargeAmount = first_attendee.cr635_dueamount | plus: 0.3 | divided_by: 0.971 | round: 2 %}
+    {% assign convenienceFee = chargeAmount | minus: first_attendee.cr635_dueamount | round: 2 %}
+  
+    <p> Due($): {{ first_attendee.cr635_dueamount | round: 2 }} </p>
+    <p style="font-size: 0.85rem;">(Amount updates may take up to 3-10 minutes after registering or canceling a course)</p>
+    <p></p>
+    <p class="smallText">You may pay by Zelle (ID: board@agwcs.org). Please write the code: {{first_attendee.cr635_payeridentifier}} in Notes.</p>
+    <p class="smallText">You may also make a payment using a credit card or any other supported online payment method below, </p>
+    <p class="smallText">subject to a convenience fee of 2.9% plus $0.30 per transaction (${{ convenienceFee }}).</p>
+    <input type="hidden" id="dueamount" value= {{ chargeAmount }} />
+
+
+ {% endif %}

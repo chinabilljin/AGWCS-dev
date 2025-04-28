@@ -1,0 +1,18 @@
+adx_accountrelationship: 
+adx_append: true
+adx_appendto: true
+adx_childTablePermissions: []
+adx_contactrelationship: 
+adx_create: true
+adx_delete: true
+adx_entitylogicalname: pp_payment
+adx_entityname: Admin Payment
+adx_entitypermission_webrole:
+- 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+- ff36659e-e4f9-ef11-be1f-000d3a1cd9e6
+adx_entitypermissionid: 15ec78f0-c680-4361-ab94-5d7052347d1c
+adx_parententitypermission: 
+adx_parentrelationship: 
+adx_read: true
+adx_scope: 756150000
+adx_write: true

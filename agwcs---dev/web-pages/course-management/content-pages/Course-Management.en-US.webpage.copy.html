@@ -1,0 +1,173 @@
+
+            <!-- Fetch all courses for the filter dropdown -->
+            {% fetchxml courses %}
+              <fetch>
+                <entity name="msdynce_course">
+                  <attribute name="msdynce_coursename" />
+                  <attribute name="statecode" />
+                  <filter type="and">
+                    <condition attribute="statecode" operator="eq" value="0" />
+{% comment %} If Administrators, the user can see all the courses. 
+If only teacher, the user can see courses its Instructor is the user
+{% endcomment %}
+                    {% if user.roles contains 'Administrators' %}  
+                        <!-- administrators -->
+                         {% assign adminPriority = true %}
+                    {% else %}
+                        {% if user.roles contains 'Teacher' %}
+                            <condition attribute="msdynce_instructorname" operator="eq" value="{{ user.contactid }}" />
+                        {% endif %}
+                    {% endif %}
+                  </filter>
+                  <order attribute="msdynce_coursename" descending="false" />
+                </entity>
+              </fetch>
+            {% endfetchxml %}
+            {% assign ifAll = 0 %}
+{%comment%}
+            <div class="row sectionBlockLayout" style="display: flex; flex-wrap: wrap; padding: 8px; margin: 0px; text-align: left; min-height: 100px;">
+              <div class="container">
+{%endcomment%}
+                <div id="header" class="col-lg-12" style="flex-grow: 1; display: flex; flex-direction: column; min-width: 300px; align-items: center;">
+                  <div class="row sectionBlockLayout text-start" style="display: flex; flex-wrap: wrap; margin: 0px; min-height: auto; padding: 8px;">
+                    <div class="container" style="padding: 0px; display: flex; flex-wrap: wrap;">
+                      <div class="col-lg-12 columnBlockLayout" style="flex-grow: 1; display: flex; flex-direction: column; min-width: 250px; ">
+                  
+                        <h2 style="text-align: center; display: block;">Course Registration</h2>
+                        <p>{% if user and user.roles.size > 0 %}
+                                <p>Your role: {{ user.roles | join: ', ' }} {% if adminPriority %} (Administrators is prioritized){% endif %} </p>
+                            {% endif %}
+                        </p>
+            
+                        <!-- Course Filter Dropdown -->
+                        <form method="get" style="text-align: left; margin-bottom: 20px; ">
+                          <label for="courseFilter" ><strong>Filter by Course Name:</strong></label>
+                          <select name="course_name" id="courseFilter" onchange="this.form.submit()">
+                            <option value="All" {% unless request.params['course_name'] %}
+                              selected {%endunless%} > All
+                            </option> 
+                            
+                            {% for course in courses.results.entities %}
+                              <option value="{{ course.msdynce_coursename }}" 
+                              {% if request.params['course_name'] == course.msdynce_coursename  %}
+                                selected
+                                {% assign ifAll = 1 %}
+                              {% endif %}
+                                >{{ course.msdynce_coursename }}
+                              </option>
+                            {% endfor %}
+                          </select>
+                        </form>
+                      </div>
+                    </div>
+                  </div>            
+                </div>
+                        <!-- Fetch registrations with the selected course filter -->
+                        {% fetchxml registrations %}
+                          <fetch>
+                            <entity name="msdynce_registration">
+                              <attribute name="msdynce_name" />
+                              <attribute name="msdynce_attendeename" />
+                              <attribute name="msdynce_parent" />
+                              <attribute name="modifiedon" />
+                              <attribute name="statecode" />
+                              <filter type="and"> 
+                                <condition attribute="statecode" operator="eq" value="0" />
+                            </filter>
+                              <order attribute="msdynce_name" descending="false" />
+                              <order attribute="modifiedon" descending="true" />
+                              <link-entity name="contact" from="contactid" to="msdynce_attendeename" alias="attendee">
+                                <attribute name="fullname" />
+                                <attribute name="emailaddress1" />
+                              </link-entity>
+                              <link-entity name="contact" from="contactid" to="msdynce_parent" alias="parent">
+                                <attribute name="fullname" />
+                                <attribute name="emailaddress1" />
+                              </link-entity>
+                              <link-entity name="msdynce_course" from="msdynce_coursename" to="msdynce_name" alias="course">
+                                <attribute name="msdynce_instructor" />
+                                <attribute name="msdynce_instructorname" />
+                                <attribute name="statecode" />
+                                <filter type="and">
+                                    {% unless (users.roles contains 'Administrators' or user.roles contains 'C1 ASP') %}
+                                        <condition attribute="msdynce_instructorname" operator="eq" value="{{ user.contactid }}" />
+                                    {% endunless %}
+                                    <condition attribute="statecode" operator="eq" value="0" />
+                                </filter>
+                              </link-entity>
+                       
+                              <!-- Apply filter if course is selected -->
+                              
+                                
+                                {% if request.params['course_name'] %}
+                                    {% if request.params['course_name'] != "All" %}
+                                    <filter type="and">                                    
+                                      <condition attribute="msdynce_name" operator="eq" value="{{ request.params['course_name'] }}" />
+                                    </filter>      
+                                          
+                                          {%comment%} 
+                                                  <condition attribute="msdynce_name" operator="eq" value="{{ selected_course }}" /> 
+                                                  
+                                                  {% if request.params['course_name']!='' and request.params['course_name']!="All" %}
+                                                    <condition attribute="msdynce_name" operator="eq" value="{{ request.params['course_name'] }}" />
+                                                  {% endif %}
+                                          {%endcomment%}
+
+                                    {% endif %}
+                                {% endif %}
+                               
+                            </entity>
+                          </fetch>
+                        {% endfetchxml %}
+            
+                        <div class="table-wrapper">
+                          <table class="custom-table">
+                            <thead>
+                              <tr>
+                                <th>No</th>
+                                <th>Course Name</th>
+                                <th>Date</th>
+                                <th>Student Name</th>
+                                <th>Student Email</th>
+                                <th>Parent Name</th>
+                                <th>Parent Email</th>
+                                <th>Instructor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {% assign number = 0 %}
+                              {% for registration in registrations.results.entities %}
+                                {% assign number = number | plus: 1 %}
+                                <tr>
+                                  <td>{{ number }}</td>
+                                  <td>{{ registration.msdynce_name }}</td>
+                                  <td><span class="local-time" data-utc="{{ registration.modifiedon | date: 'yyyy-MM-ddTHH:mm:ssZ' }}"></span></span></td>
+                                  <td>{{ registration.["attendee.fullname"] }}</td>
+                                  <td>{{ registration.["attendee.emailaddress1"] }}</td>
+                                  <td>{{ registration.["parent.fullname"] }}</td>
+                                  <td>{{ registration.["parent.emailaddress1"] }}</td>
+                                  <td>{{ registration["course.msdynce_instructor"] }}</td>
+                                </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      
+{%comment%}                
+              </div>
+</div>
+{%endcomment%}
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll(".local-time").forEach(function(el) {
+      const utcDate = new Date(el.getAttribute("data-utc"));
+      const options = { timeZone: 'America/Chicago', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false };
+      el.textContent = utcDate.toLocaleString('en-US', options).replace(',', '');
+  });
+  });
+</script>
+
+
+

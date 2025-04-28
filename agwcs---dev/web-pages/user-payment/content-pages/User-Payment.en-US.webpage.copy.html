@@ -1,0 +1,245 @@
+{% include 'Portal Web API Wrapper' %}
+
+<style>
+  .container-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 1rem;
+  }
+
+  .flex-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    flex: 1;
+    min-width: 300px;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    color: #333;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {
+    background-color: #f0f8ff;
+    cursor: pointer;
+  }
+
+  .selected-row {
+    background-color: #dbeafe !important;
+    font-weight: 600;
+  }
+</style>
+
+<div class="container-modern">
+
+  {% fetchxml users %}
+  <fetch distinct='true'>
+    <entity name="contact">
+      <attribute name="contactid" />
+      <attribute name="fullname" />
+      <attribute name="cr635_dueamount" />
+      <attribute name="cr635_fee" />
+      <link-entity name="msdynce_registration" from="msdynce_parent" to="contactid" link-type="inner" alias="reg">
+        <filter>
+          <condition attribute="statecode" operator="eq" value="0" />
+        </filter>
+        <link-entity name="msdynce_course" from="msdynce_courseid" to="msdynce_courseid" link-type="inner" alias="course">
+          <filter>
+            <condition attribute="statecode" operator="eq" value="0" />
+          </filter>
+        </link-entity>
+      </link-entity>
+    </entity>
+  </fetch>
+  {% endfetchxml %}
+
+  <div class="flex-columns">
+
+    <!-- Users -->
+    <div class="card">
+      <h3>Users</h3>
+      <div style="max-height: 600px; overflow-y: auto;">
+        <table id="userTable">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Due Amount</th>
+              <th>Fee</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in users.results.entities %}
+            <tr onclick="selectUser('{{ user.contactid }}', this)">
+              <td>{{ user.fullname }}</td>
+              <td>{{ user.cr635_dueamount | round: 2 }}</td>
+              <td>{{ user.cr635_fee | round: 2 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Course Registration -->
+    <div class="card" style="flex: 2;">
+      <h3>Course Registration</h3>
+      <table id="registrationTable">
+        <thead>
+          <tr>
+            <th>Course Name</th>
+            <th>Student</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Fee</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Payments -->
+    <div class="card" style="flex: 2;">
+      <h3>Payments</h3>
+      <table id="paymentTable">
+        <thead>
+          <tr>
+            <th>Amount</th>
+            <th>Payment Time</th>
+            <th>Provider</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function selectUser(selectedUserId, row) {
+    // Remove previous selection
+    const rows = document.querySelectorAll("#userTable tbody tr");
+    rows.forEach(r => r.classList.remove("selected-row"));
+
+    // Highlight current
+    if (row) row.classList.add("selected-row");
+
+    // Load related data
+    loadCourseRegistration(selectedUserId);
+    loadPayments(selectedUserId);
+  }
+
+  function loadCourseRegistration(userId) {
+    const table = document.querySelector("#registrationTable tbody");
+    table.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
+
+    webapi.safeAjax({
+      type: "GET",
+      url: `/_api/msdynce_registrations?$select=msdynce_courseenddate,msdynce_coursestartdate,cr635_fee,msdynce_name,_msdynce_attendeename_value&$expand=msdynce_courseid($select=msdynce_courseenddateandtime,msdynce_coursename,msdynce_coursestartdateandtime)&$filter=(statecode eq 0 and _msdynce_parent_value eq ${userId})&$orderby=_createdby_value desc`,
+      contentType: "application/json",
+      headers: { "Prefer": "odata.include-annotations=*" },
+      success: function (data) {
+        table.innerHTML = "";
+        if (data.value.length === 0) {
+          table.innerHTML = "<tr><td colspan='5'>No registrations found</td></tr>";
+          return;
+        }
+
+        data.value.forEach(result => {
+          let coursename = result["msdynce_name"];
+          let start = getDateOnly( result["msdynce_coursestartdate@OData.Community.Display.V1.FormattedValue"] || "-" );
+          let end = getDateOnly( result["msdynce_courseenddate@OData.Community.Display.V1.FormattedValue"] || "-" );
+          let fee = result["cr635_fee"] || "-";
+          let student = result["_msdynce_attendeename_value@OData.Community.Display.V1.FormattedValue"] || "-";
+
+          if (result["msdynce_courseid"]) {
+            if (result["msdynce_courseid"]["msdynce_coursename"])
+              coursename = result["msdynce_courseid"]["msdynce_coursename"];
+            if (result["msdynce_courseid"]["msdynce_coursestartdateandtime@OData.Community.Display.V1.FormattedValue"])
+              start = getDateOnly( result["msdynce_courseid"]["msdynce_coursestartdateandtime@OData.Community.Display.V1.FormattedValue"] );
+            if (result["msdynce_courseid"]["msdynce_courseenddateandtime@OData.Community.Display.V1.FormattedValue"])
+              end = getDateOnly( result["msdynce_courseid"]["msdynce_courseenddateandtime@OData.Community.Display.V1.FormattedValue"] );
+          }
+
+          table.innerHTML += `
+            <tr>
+              <td>${coursename}</td>
+              <td>${student}</td>
+              <td>${start}</td>
+              <td>${end}</td>
+              <td>${fee}</td>
+            </tr>
+          `;
+        });
+      },
+      error: function () {
+        table.innerHTML = "<tr><td colspan='5'>Error loading course data</td></tr>";
+      }
+    });
+  }
+
+  function loadPayments(userId) {
+    const table = document.querySelector("#paymentTable tbody");
+    table.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
+
+    webapi.safeAjax({
+      type: "GET",
+      url: `/_api/pp_payments?$select=pp_amount,pp_paymenttime,pp_provider&$filter=(pp_paymentstatus eq 3 and _pp_user_value eq ${userId})`,
+      contentType: "application/json",
+      headers: { "Prefer": "odata.include-annotations=*" },
+      success: function (data) {
+        table.innerHTML = "";
+        if (data.value.length === 0) {
+          table.innerHTML = "<tr><td colspan='3'>No payments found</td></tr>";
+          return;
+        }
+
+        data.value.forEach(result => {
+          let amount = result["pp_amount"] || "-";
+          let time = result["pp_paymenttime@OData.Community.Display.V1.FormattedValue"] || "-";
+          let provider = result["pp_provider@OData.Community.Display.V1.FormattedValue"] || "-";
+
+          table.innerHTML += `
+            <tr>
+              <td>${amount}</td>
+              <td>${time}</td>
+              <td>${provider}</td>
+            </tr>
+          `;
+        });
+      },
+      error: function () {
+        table.innerHTML = "<tr><td colspan='3'>Error loading payment data</td></tr>";
+      }
+    });
+  }
+
+  // Helper to extract date portion (before the comma or space)
+function getDateOnly(datetimeStr) {
+  return datetimeStr?.split(',')[0]?.split(' ')[0] || '-';
+}
+</script>

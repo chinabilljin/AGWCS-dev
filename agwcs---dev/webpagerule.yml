@@ -1,0 +1,136 @@
+- adx_filecontent: 
+  adx_name: Restrict Read on [Admin] Create Course
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 0537659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: 1b467292-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Restrict Read on My Registrations
+  adx_right: 1
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - ff36659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 0ef16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: dff06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_filecontent: 
+  adx_name: Restrict Read on Pay
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - ff36659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 1ed4c965-0fe3-ff3e-955e-2f774417dc72
+  adx_webpageid: 16210641-59b5-0c4a-0b43-ed03d6ee246d
+- adx_name: Restrict Read on User Payment
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 20478021-fe30-8c1e-a66d-398ee61205d1
+  adx_webpageid: 913b2faf-9315-e767-45c0-a3402ade4ef6
+- adx_filecontent: 
+  adx_name: Restrict Read on Teacher view
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  - f921b747-9400-f011-bae2-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 2ef2da70-1131-985d-99fe-98f10ebba08e
+  adx_webpageid: ca1f8d80-2989-fd0f-7bc7-d112150c46e7
+- adx_name: Grant Change to Administrators
+  adx_right: 1
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 37f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: 8bf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  statecode: 1
+  statuscode: 2
+- adx_name: Restrict Read on Home
+  adx_right: 2
+  adx_scope: 2
+  adx_webpageaccesscontrolrule_webrole:
+  - 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 38f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: 8bf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  statecode: 1
+  statuscode: 2
+- adx_name: Restrict Read on My Registrations
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - ff36659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 4d9d394a-c8eb-b435-0063-5a589a132112
+  adx_webpageid: dff06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Restrict Read on User and role
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 57e56a0a-7def-8284-7e60-c46af2c48fb8
+  adx_webpageid: df404797-5a60-d7c7-2990-d35c02b448ff
+- adx_name: Restrict Read on Settle payment
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 5cab4944-a919-44e5-5aae-062539b9a1b5
+  adx_webpageid: 741be878-cca9-6297-0b5e-e3e59263262b
+- adx_filecontent: 
+  adx_name: Restrict Read on [Admin] Duplicate Course
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 6437659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: 2e37659e-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_filecontent: 
+  adx_name: Restrict Read on [Admin] Courses Home
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: 8df16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: 4d467292-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Restrict Read on Teacher Intros
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: a457d9b4-eb8a-49e2-99c1-61b75841b6fd
+  adx_webpageid: 2411d29b-9660-716a-6e0a-793f4b61bc48
+- adx_filecontent: 
+  adx_name: Restrict Read on [Admin] Edit Course
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: b9ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageid: 25f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_filecontent: 
+  adx_name: Restrict Read on Pay
+  adx_right: 2
+  adx_scope: 2
+  adx_webpageaccesscontrolrule_webrole:
+  - ff36659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: e1d0d30d-17a6-e7b3-379e-a8e1405f9f9e
+  adx_webpageid: 16210641-59b5-0c4a-0b43-ed03d6ee246d
+- adx_filecontent: 
+  adx_name: Restrict Read on Course Management
+  adx_right: 2
+  adx_scope: 1
+  adx_webpageaccesscontrolrule_webrole:
+  - 4237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  - 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+  - f921b747-9400-f011-bae2-000d3a1cd9e6
+  adx_webpageaccesscontrolruleid: e841bd2d-20a3-3938-4154-08999f677379
+  adx_webpageid: f5ae42b8-0f5f-1f8e-b027-099b8786f3c1
+- adx_name: Grant Change to Content
+  adx_right: 1
+  adx_scope: 1
+  adx_webpageaccesscontrolruleid: faef6c98-e4f9-ef11-be1f-000d3a1cd9e6

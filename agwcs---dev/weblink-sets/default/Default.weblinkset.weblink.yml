@@ -1,0 +1,174 @@
+- adx_displayimageonly: false
+  adx_displayorder: 34
+  adx_displaypagechildlinks: false
+  adx_displaypagevalidation: false
+  adx_filecontent: 
+  adx_name: Teacher Intro
+  adx_openinnewwindow: false
+  adx_pageid: 88ee32c5-eaae-85ee-352d-16d3e5b6a77b
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_robotsfollowlink: true
+  adx_weblinkid: 0379b1c4-8ebb-9e8f-1d8d-09261f7735b8
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 28
+  adx_filecontent: 
+  adx_name: '[Admin] Edit Course'
+  adx_pageid: 25f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: 146965c7-594e-4c88-98af-31da5bede1d9
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 18
+  adx_filecontent: 
+  adx_name: My Attendees
+  adx_pageid: d6ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: 35273f10-aa0e-4203-9db9-59ab01d5704d
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayimageonly: false
+  adx_displayorder: 30
+  adx_displaypagechildlinks: false
+  adx_displaypagevalidation: false
+  adx_filecontent: 
+  adx_name: User and role
+  adx_openinnewwindow: false
+  adx_pageid: df404797-5a60-d7c7-2990-d35c02b448ff
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_robotsfollowlink: true
+  adx_weblinkid: 5e0eaab4-a3af-9373-2c37-8311d11e42d1
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 27
+  adx_filecontent: 
+  adx_name: Course Management
+  adx_pageid: f5ae42b8-0f5f-1f8e-b027-099b8786f3c1
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: 655ab768-3537-423d-acc4-8d8c9d83bfab
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 8
+  adx_filecontent: 
+  adx_name: '[Admin] Create Course'
+  adx_pageid: 1b467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_parentweblinkid: 
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: 6b63829c-8b63-4264-bdbd-e8d4f3e712f4
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 7
+  adx_filecontent: 
+  adx_name: '[Admin] Delete-Course'
+  adx_pageid: 47f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_parentweblinkid: 
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: 75e34599-d283-4b9f-ba6e-2e892b314d0e
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 20
+  adx_filecontent: 
+  adx_name: Edit Attendee Profile
+  adx_pageid: d1f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: 82e7c79d-ddd1-46c0-bd03-89e67e4bcae3
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayimageonly: false
+  adx_displayorder: 33
+  adx_displaypagechildlinks: false
+  adx_displaypagevalidation: false
+  adx_filecontent: 
+  adx_name: Teacher Intros
+  adx_openinnewwindow: false
+  adx_pageid: 2411d29b-9660-716a-6e0a-793f4b61bc48
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_robotsfollowlink: true
+  adx_weblinkid: 849a9c96-d495-4083-2ab4-4d892eca68d5
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayimageonly: false
+  adx_displayorder: 31
+  adx_displaypagechildlinks: false
+  adx_displaypagevalidation: false
+  adx_filecontent: 
+  adx_name: Settle payment
+  adx_openinnewwindow: false
+  adx_pageid: 741be878-cca9-6297-0b5e-e3e59263262b
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_robotsfollowlink: true
+  adx_weblinkid: 983b4477-38b8-b9b4-53bd-d619abcd5c13
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 29
+  adx_filecontent: 
+  adx_name: Pay
+  adx_pageid: 16210641-59b5-0c4a-0b43-ed03d6ee246d
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: a5cd604a-a269-4216-ab59-85e12143187c
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 26
+  adx_filecontent: 
+  adx_name: My Registrations
+  adx_pageid: dff06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: c4f471cf-4442-41b5-81d0-ae3f019b2fcf
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 3
+  adx_filecontent: 
+  adx_name: Teacher view
+  adx_pageid: ca1f8d80-2989-fd0f-7bc7-d112150c46e7
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: c57dbee3-bf64-4b6f-bfdb-69f8d0ae2c6e
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 19
+  adx_filecontent: 
+  adx_name: Add Attendee Profile
+  adx_pageid: a3ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: c9592930-69b9-4317-bdc6-420b21ece40e
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 15
+  adx_filecontent: 
+  adx_name: '[Admin] Duplicate Course'
+  adx_pageid: 2e37659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: d66e45b7-8dc8-4220-811b-c7c385cf19d0
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 6
+  adx_filecontent: 
+  adx_name: '[Admin] Courses Home'
+  adx_pageid: 4d467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: d78ad93b-1ec6-4f71-8ad7-807954ad3aa2
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 1
+  adx_filecontent: 
+  adx_name: Home
+  adx_pageid: 8bf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: d85e3340-b731-4afa-96c1-2d03d4d91d32
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 17
+  adx_filecontent: 
+  adx_name: Registration Success
+  adx_pageid: a8ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: e9392b3e-cc9c-4568-83f6-ef86d53e4275
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 25
+  adx_filecontent: 
+  adx_name: Unregister Attendee
+  adx_pageid: 21467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: e97cc634-b6c9-4e80-9f06-3a97d2118b6b
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayorder: 16
+  adx_filecontent: 
+  adx_name: View Course Details
+  adx_pageid: 30f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_weblinkid: f0230a73-6f81-4abd-887d-b2e49fe57050
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218
+- adx_displayimageonly: false
+  adx_displayorder: 32
+  adx_displaypagechildlinks: false
+  adx_displaypagevalidation: false
+  adx_filecontent: 
+  adx_name: User Payment
+  adx_openinnewwindow: false
+  adx_pageid: 913b2faf-9315-e767-45c0-a3402ade4ef6
+  adx_publishingstateid: b3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_robotsfollowlink: true
+  adx_weblinkid: f8594f16-69d4-5f63-ba43-b06b1b55df18
+  adx_weblinksetid: ff15fe85-8bb0-4dbb-8573-bed96be0b218

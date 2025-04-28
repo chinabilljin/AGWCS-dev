@@ -1,0 +1,416 @@
+{% include 'Portal Web API Wrapper' %}
+<!-- 1. Fetch all active roles -->
+{% fetchxml all_roles %}
+<fetch>
+  <entity name="powerpagecomponent">
+    <attribute name="content" />
+    <attribute name="name" />
+    <attribute name="statecode" />
+    <attribute name="componentstate" />
+    <attribute name="powerpagecomponenttype" />
+    <attribute name="powerpagecomponentid" />
+    <filter type="and">
+      <condition attribute="powerpagecomponenttype" operator="eq" value="11" />
+      <condition attribute="name" operator="ne" value="Anonymous Users" />
+      <condition attribute="name" operator="ne" value="Authenticated Users" />
+    </filter>
+    <order attribute="name" descending="false" />
+  </entity>
+</fetch>
+{% endfetchxml %}
+{% comment %}
+<p>Roles:</p>
+{% for role in all_roles.results.entities %}
+  <p>{{ role.name }}, {{ role.powerpagecomponentid }}</p>
+{% endfor %}
+{% endcomment %}
+<!-- 3. Fetch contact-role mapping -->
+{% fetchxml contact_role %}
+<fetch>
+  <entity name="contact">
+    <attribute name="contactid" />
+    <attribute name="fullname" />
+    <attribute name="emailaddress1" />
+    <attribute name="parentcustomerid" />
+    <filter type="and">
+      <condition attribute="statecode" operator="eq" value="0" />
+    </filter>
+    <order attribute="fullname" descending="false" />
+    <link-entity 
+      name="powerpagecomponent_mspp_webrole_contact" from="contactid" to="contactid" link-type="outer" alias="wrc">
+      <attribute name="powerpagecomponentid" />
+      <attribute name="contactid" />
+      <attribute name="powerpagecomponent_mspp_webrole_contactid" />
+      <link-entity name="powerpagecomponent" from="powerpagecomponentid" to="powerpagecomponentid" link-type="outer" alias="wr">
+        <attribute name="name" />
+        <filter type="and">
+          <condition attribute="statecode" operator="eq" value="0" />
+          <condition attribute="name" operator="ne" value="Anonymous Users" />
+          <condition attribute="name" operator="ne" value="Authenticated Users" />
+        </filter>
+      </link-entity>
+    </link-entity>
+  </entity>
+</fetch>
+{% endfetchxml %}
+{% comment %}
+<p></p>
+<p>Contact and role:</p>
+{% for item in contact_role.results.entities %}
+  <p>{{ item.fullname }}, {{ item['wr.name'] }}, {{ item['wrc.contactid'] }}, {{ item['wrc.powerpagecomponentid'] }}</p>
+{% endfor %}
+{% endcomment %}
+
+<style>
+  .container {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  .contact-table-wrapper {
+    flex: 2;
+    max-height: 700px; /* Adjust as needed */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  thead th {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    padding: 12px;
+    text-align: left;
+    z-index: 1;
+    border-bottom: 1px solid #ddd;
+  }
+  tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  tr.contact-row:hover {
+    background-color: #f0f9ff;
+  }
+  tr.contact-row.selected {
+    background-color: #d1f0ff !important;
+  }
+  .role-form {
+    flex: 1;
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .role-form h4 {
+    margin-bottom: 12px;
+  }
+  .role-form label {
+    display: block;
+    margin-bottom: 6px;
+    cursor: pointer;
+  }
+  #submitRoles {
+    margin-top: 16px;
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    display: none;
+  }
+  #submitRoles:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+</style>
+
+
+<div class="row sectionBlockLayout" style="display: flex; flex-wrap: wrap; padding: 8px; margin: 0px;">
+  
+    <div id="header" class="col-lg-12" style="flex-grow: 1; display: flex; flex-direction: column; min-width: 300px; align-items: center;">
+      <h2>Users and roles</h2>
+
+        <div class="container">
+          <!-- Contact Table -->
+          <div class="contact-table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Roles</th>
+                </tr>
+              </thead>
+              <tbody id="contactTable">
+                {% assign seen_ids = "" %}
+                {% for entity in contact_role.results.entities %}
+                  {% assign contact_id = entity.contactid %}
+                  {% unless seen_ids contains contact_id %}
+                    <tr class="contact-row" data-contactid="{{ contact_id }}">
+                      <td>{{ entity.fullname }}</td>
+                      <td>
+                        {{ entity.emailaddress1 | default: '(Child/attendee)' }}
+                      </td>
+                      <td>
+                        {% assign role_string = "" %}
+                        {% for match in contact_role.results.entities %}
+                          {% if match['wrc.contactid'] == contact_id %}
+                            {% assign role_string = role_string | append: match['wr.name'] | append: ", " %}
+                          {% endif %}
+                        {% endfor %}
+                        {{ role_string | strip | rstrip: "," }}
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                    {% assign seen_ids = seen_ids | append: contact_id | append: ";" %}
+                  {% endunless %}
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <!-- Role Form -->
+          <div class="role-form">
+            <form id="roleForm">
+              <h4>Select Roles</h4>
+              {% for role in all_roles.results.entities %}
+                <label>
+                  <input type="checkbox" id="role_{{ role.powerpagecomponentid }}" value="{{ role.powerpagecomponentid }}">
+                  {{ role.name }}
+                </label>
+              {% endfor %}
+            </form>
+            <button id="submitRoles">Submit</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+
+
+<!-- Manually Serialize contact_role data into JS -->
+<script>
+  var waitSteps = 0;
+  var contactRoleData = [
+    {% for entry in contact_role.results.entities %}
+      {
+        contactid: "{{ entry['wrc.contactid'] }}",
+        roleid: "{{ entry['wrc.powerpagecomponentid'] }}"
+        
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+  let selectedContactId = null;
+  let selectedWebRoleId = null;
+  document.addEventListener('DOMContentLoaded', function () {
+    const rows = document.querySelectorAll('.contact-row');
+    const checkboxes = document.querySelectorAll('#roleForm input[type="checkbox"]');
+    const submitButton = document.getElementById('submitRoles');
+    // Track selected contact and checkbox changes
+    rows.forEach(row => {
+      row.addEventListener('click', function () {
+        selectedContactId = row.getAttribute('data-contactid');
+        //selectedWebRoleId = row.getAttribute('data-webroleid')
+        //console.log(`******** contactid: ${selectedContactId}, webroleid: ${selectedWebRoleId}`);
+        // Highlight row
+        rows.forEach(r => r.style.backgroundColor = '');
+        row.style.backgroundColor = '#e0f7fa';
+        // Reset checkboxes
+        checkboxes.forEach(cb => cb.checked = false);
+        // Match roles
+        const matched = contactRoleData
+          .filter(entry => entry.contactid === selectedContactId)
+          .map(entry => entry.roleid);
+        // Check relevant roles
+        checkboxes.forEach(cb => {
+          if (matched.includes(cb.value)) {
+            cb.checked = true;
+          }
+        });
+        // Hide submit button initially
+        submitButton.style.display = 'none';
+      });
+    });
+    // Show Submit when roles change
+    checkboxes.forEach(cb => {
+      cb.addEventListener('change', function () {
+        if (selectedContactId) {
+          submitButton.style.display = 'inline-block';
+        }
+      });
+    });
+    // Auto-select row based on ID query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const contactParamId = urlParams.get("ID");
+    if (contactParamId) {
+      const targetRow = Array.from(rows).find(row => row.getAttribute("data-contactid") === contactParamId);
+      if (targetRow) {
+        targetRow.click();
+        // Scroll into view (within scrollable container)
+        targetRow.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+    // On Submit: Call Web API
+    submitButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (!selectedContactId) {
+        alert("Please select a contact first.");
+        return;
+      }
+      const selectedRoles = Array.from(checkboxes)
+        .filter(cb => cb.checked)
+        .map(cb => cb.value);
+      // Build payload (customize based on your schema)
+      const payload = {
+        contactid: selectedContactId,
+        roleids: selectedRoles
+      };
+      waitSteps = checkboxes.length;
+      document.getElementById("submitRoles").disabled = true;
+      document.getElementById("submitRoles").innerText = "Wait...";
+      checkboxes.forEach( cb => {
+        //console.log("******** checkbox for each:" + cb.value +" - " + cb.checked)
+        if (cb.checked){
+          addWebRoleToContact(selectedContactId, cb.value)
+        }
+        else{
+          deleteWebRolesForContact(selectedContactId, cb.value)
+        }
+      });
+      
+    });
+  });
+  function checksubmitbuttonstatus (){
+    waitSteps --;
+    if (waitSteps <=0){
+      
+      document.getElementById("submitRoles").innerText = "Refreshing";
+      
+      //window.location.reload();
+      //window.top.location.reload();
+      window.location.href = window.location.pathname + "?ID=" + selectedContactId;
+      //document.getElementById("submitRoles").disabled = false;
+    }
+  }
+  ////////////////////////////////////
+  // Delete web roles
+  ////////////////////////////////////
+  function deleteWebRolesForContact(contactId, webroleId) {
+    if (!contactId) {
+        //console.log("Contact ID is required.");
+        return;
+    }
+    //console.log("********** To delete web role "+webroleId+" from "+contactId)
+    webapi.safeAjax({
+        type: "DELETE",
+        url: "/_api/contacts("+contactId+")/powerpagecomponent_mspp_webrole_contact("+ webroleId +")/$ref",
+        contentType: "application/json",
+        success: function (data, textStatus, xhr) {
+          //console.log("******** Delete Web Role Success:  "+webroleId+" from "+contactId);
+          
+          checksubmitbuttonstatus();
+        },
+        error: function (xhr, textStatus, errorThrown) {
+          console.log("******** Delete Web Role Error for "+contactId+" , "+webroleId);
+          console.log(xhr);
+          checksubmitbuttonstatus();
+        }
+      });
+    
+  };
+
+  /*
+  function deleteWebRolesForContact(contactId) {
+    if (!contactId) {
+        console.error("Contact ID is required.");
+        return;
+    }
+    console.log(" **************** contactid:"+contactId)
+    webapi.safeAjax({
+    type: "GET",
+    url: "/_api/contacts?$select=contactid,fullname&$expand=powerpagecomponent_mspp_webrole_contact($select=powerpagecomponentid,name)&$filter=contactid eq "+contactId,
+    contentType: "application/json",
+    headers: {
+      "Prefer": "odata.include-annotations=*"
+    },
+    success: function (data, textStatus, xhr) {
+      var results = data;
+      console.log(results);
+      waitSteps = -results.value.length;
+      for (var i = 0; i < results.value.length; i++) {
+        var result = results.value[i];
+        // Columns
+        var contactid = result["contactid"]; // Guid
+        var fullname = result["fullname"]; // Text
+        
+        // Many To Many Relationships
+        for (var j = 0; j < result.powerpagecomponent_mspp_webrole_contact.length; j++) {
+          var powerpagecomponent_mspp_webrole_contact_powerpagecomponentid = result.powerpagecomponent_mspp_webrole_contact[j]["powerpagecomponentid"]; // Guid
+          var powerpagecomponent_mspp_webrole_contact_name = result.powerpagecomponent_mspp_webrole_contact[j]["name"]; // Text
+          //var powerpagecomponent_mspp_webrole_contactid = result.powerpagecomponent_mspp_webrole_contact[j]["powerpagecomponent_mspp_webrole_contactid"]; 
+          console.log(" **************** web role name:"+powerpagecomponent_mspp_webrole_contact_name)
+          console.log(" **************** web role component id:"+powerpagecomponent_mspp_webrole_contact_powerpagecomponentid)
+          //console.log(" **************** contact web role component id:"+powerpagecomponent_mspp_webrole_contactid)
+
+          webapi.safeAjax({
+            type: "DELETE",
+            url: "/_api/contacts("+contactId+")/powerpagecomponent_mspp_webrole_contact("+ powerpagecomponent_mspp_webrole_contact_powerpagecomponentid +")/$ref",
+            contentType: "application/json",
+            success: function (data, textStatus, xhr) {
+              console.log("Delete Web Role Success");
+              
+            },
+            error: function (xhr, textStatus, errorThrown) {
+              console.log(xhr);
+            }
+          });
+
+        }
+      }
+    },
+      error: function (xhr, textStatus, errorThrown) {
+        console.log("***************** Error:"+textStatus);
+        console.log( xhr )
+      }
+    });
+  }
+*/
+  function addWebRoleToContact (contactId, webroleId){
+    var portalUri = window.location.origin;
+    //console.log("******* To add webroleId: " + webroleId + " to " + contactId);
+    
+    var association = {
+    "@odata.id": portalUri + "/_api/powerpagecomponents("+ webroleId +")"
+    };
+    webapi.safeAjax({
+      type: "POST",
+      contentType: "application/json",
+      url: "/_api/contacts("+ contactId +")/powerpagecomponent_mspp_webrole_contact/$ref",
+      data: JSON.stringify(association),
+      success: function (data, textStatus, xhr) {
+        //console.log("*********** Add Web Role Success: "  +webroleId+" to " + contactId);
+        checksubmitbuttonstatus();
+      },
+      error: function (xhr, textStatus, errorThrown) {
+        console.log("*********** Add Web Role Error: " +webroleId+" to " + contactId);
+        console.log(xhr);
+        checksubmitbuttonstatus();
+      }
+    });
+  }
+</script>
+
+
+  

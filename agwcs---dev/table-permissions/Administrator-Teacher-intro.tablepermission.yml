@@ -1,0 +1,12 @@
+adx_append: true
+adx_appendto: true
+adx_create: true
+adx_delete: true
+adx_entitylogicalname: cr635_teacherintro
+adx_entityname: Administrator Teacher intro
+adx_entitypermission_webrole:
+- 4c467292-e4f9-ef11-be1f-000d3a1cd9e6
+adx_entitypermissionid: 6313b627-e617-f011-9989-000d3a1cd9e6
+adx_read: true
+adx_scope: 756150000
+adx_write: true

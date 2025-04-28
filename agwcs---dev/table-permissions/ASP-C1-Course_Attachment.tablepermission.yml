@@ -1,0 +1,16 @@
+adx_accountrelationship: 
+adx_append: true
+adx_appendto: false
+adx_childTablePermissions: []
+adx_contactrelationship: 
+adx_create: true
+adx_delete: false
+adx_entitylogicalname: annotation
+adx_entityname: ASP C1 Course_Attachment
+adx_entitypermission_webrole: []
+adx_entitypermissionid: 73424cc4-da1d-4215-9ed8-3a773a0239f6
+adx_parententitypermission: 03467292-e4f9-ef11-be1f-000d3a1cd9e6
+adx_parentrelationship: msdynce_course_Annotations
+adx_read: false
+adx_scope: 756150003
+adx_write: false

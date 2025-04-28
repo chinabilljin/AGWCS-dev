@@ -1,0 +1,5 @@
+{
+  "isPaymentEnabled": true,
+  "paymentProvider": "Stripe",
+  "amountColumnName": "cr635_payamount"
+}

@@ -1,0 +1,3 @@
+It's the source code on Microsoft Power Pages. I desigend it for AGWCS Course Registration and Management website. I'm making a series of videos on YouTube about it. I tested vibe coding on this Microsoft low-code platform. The playlist is here: https://youtube.com/playlist?list=PLb5ipK9t6Hx6NoJJb2yW705cwuCN164ur&si=a1CP0SjOi4Gi_Kw_
+
+Welcome to use it to deploy. And appreciate any of your opinios about vibe coding and low coding, or the combination I'm exploring.

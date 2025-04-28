@@ -1,0 +1,68 @@
+<div data-component-theme="portalThemeColor5" class="card" id="card-{{course.msdynce_course_id}}">
+  <div id="courseimage-{{course.msdynce_course_id}}" data-courseid="{{course.msdynce_courseid}}" class="course-card-img">
+    <div class="card-img-top gradient-image placeholder"></div>
+  </div>
+  <div class="course-days">
+    {{dayvalues}}
+  </div>
+  <div class="card-body" data-component-theme="portalThemeColor5">
+    <h3 class="card-text-large title">{{ course.msdynce_coursename }}</h3>
+    <p class="card-text-medium no-margin"> ${{ course.cr635_programfee | round: 2 }}</p>
+    {%comment%}
+    It's home page's course Card
+
+    <p class="card-text-medium no-margin"> {{ course.msdynce_coursestartdateandtime | date: 't'}}<span> - </span>{{ course.msdynce_courseenddateandtime | date: 't'}}</p>
+    {%endcomment%}
+
+    {% if course.cr635_coursedatetimedetails %}
+        <span class="card-text-medium no-margin"> {{ course.cr635_coursedatetimedetails }}</span>
+    {% else %}
+        <p class="card-text-medium no-margin"> {{ course.msdynce_coursestartdateandtime | date: 't'}}<span> - </span>{{ course.msdynce_courseenddateandtime | date: 't'}} CDT</p>
+    {% endif %}
+
+
+    
+    
+    <p class="card-text startdate"> {{ course.msdynce_coursestartdateandtime | date: 'MMMM dd'}}<span> - </span>{{ course.msdynce_courseenddateandtime | date: 'MMMM dd'}}</p>
+    <!-- 4/12/2025 
+    <p class="card-text-xsmall"><strong>Instructor: </strong>{{ course.msdynce_instructor | default: 'Pending' }} </p>
+    -->
+    <p class="card-text-xsmall"><strong>Instructor: </strong>
+            {% if course['teacher_intro.cr635_intro'] %}
+              <a class="teacher-intro" href="/teacher-intro?id={{ course['teacher.contactid'] }}">{{ course.msdynce_instructor | default: 'Pending' }}</a>
+            {% else %}
+              {{ course.msdynce_instructor | default: 'Pending' }}
+            {% endif %}
+    </p>
+
+    <p courseid="{{course.msdynce_course_id}}" class="card-text-xxsmall description">{{course.msdynce_coursedescription | truncate: 150}}
+    </p>
+    <p>
+      <a class="learn-more" aria-label="Learn more about {{ course.msdynce_coursename }} course." href="{{ sitemarkers['View Course Details'].url }}?id={{course.msdynce_courseid}}">Learn more</a>
+    </p>
+    <p></p>
+    <div class="course-category">
+      <p data-component-theme="portalThemeColor3">{{course.msdynce_coursecategory.Label}}</p>
+    </div>
+    <div class="course-formats">{{typeValues}}</div>
+    <div class="bottom-right">
+
+{%comment%}     
+      <p class="card-text-xsmall">{{ course.msdynce_registerationmaxcapacity | minus: registered }}<span> spots left / </span>{{ course.msdynce_registerationmaxcapacity }}</p>
+{%endcomment%}
+      {% if registered >= course.msdynce_registerationmaxcapacity %}
+          <p class="card-text-xsmall">Full</p>
+      {% elsif registered >= course.msdynce_registerationmaxcapacity | times: 0.8 %}
+          <p class="card-text-xsmall">Almost full</p>
+      {% endif %}
+    
+      
+      {% if user %}
+      <a href="{{ sitemarkers['View Course Details'].url }}?id={{course.msdynce_courseid}}" class="button1" aria-label="Register for the {{course.msdynce_coursename}} course.">Register</a>
+      {% else %}
+      <button data-bs-toggle="modal" data-bs-target="#signInPopup" class="button1" aria-label="Sign in to register for the {{course.msdynce_coursename}} course.">Sign in to Register</button>
+      {% endif %}
+      <p class="card-text-xxsmall deadline">Registration deadline: {{ course.msdynce_registerationdeadline | date: 'MMMM dd'}}</p>
+    </div>
+  </div>
+</div>

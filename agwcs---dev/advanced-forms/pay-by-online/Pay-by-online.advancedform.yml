@@ -1,0 +1,16 @@
+adx_authenticationrequired: false
+adx_editexistingrecordpermitted: true
+adx_filecontent: 
+adx_multiplerecordsperuserpermitted: true
+adx_name: Pay by online
+adx_progressindicatorenabled: true
+adx_progressindicatorposition: 756150000
+adx_progressindicatortype: 756150000
+adx_startstep: 916f2039-90ae-405a-b7be-865d498b6c47
+adx_webformid: 36ae31d2-ffc0-452d-b90a-aaa74d560b7e
+adx_webFormSteps:
+- []
+- &o0 []
+- *o0
+statecode: 1
+statuscode: 2

@@ -1,0 +1,26 @@
+{% fetchxml attendees %}
+<fetch distinct="false" mapping="logical" output-format="xml-platform" version="1.0">
+  <entity name="contact" >
+    <attribute name="cr635_dueamount" />
+    <attribute name="contactid" />
+    <attribute name="firstname" />
+    <attribute name="lastname" />
+    <attribute name="parentcustomerid" /> 
+    <attribute name="cr635_paid" />
+    <attribute name="cr635_fee" />
+    <attribute name="cr635_payeridentifier" />
+    <filter>
+      <condition attribute="contactid" operator="eq" value="{{user.contactid}}" />
+    </filter>
+  </entity>
+</fetch>
+{% endfetchxml %}
+
+{% if attendees.results and attendees.results.entities %}
+    {% assign attendeeResults = attendees.results.entities %}
+    {% assign first_attendee = attendeeResults[0] %}  
+
+    <p> Due($): {{ first_attendee.cr635_dueamount | round: 2 }} </p>
+    <p style="font-size: 0.85rem;">(Amount updates may take up to 3-10 minutes after registering or canceling a course)</p>
+    <a href="/pay" style="font-size: 18px;">Pay</a>
+{% endif %}

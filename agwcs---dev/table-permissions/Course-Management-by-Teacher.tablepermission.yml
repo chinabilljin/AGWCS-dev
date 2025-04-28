@@ -1,0 +1,17 @@
+adx_accountrelationship: 
+adx_append: false
+adx_appendto: false
+adx_childTablePermissions: []
+adx_contactrelationship: 
+adx_create: false
+adx_delete: false
+adx_entitylogicalname: msdynce_registration
+adx_entityname: Course Management by Teacher
+adx_entitypermission_webrole:
+- f921b747-9400-f011-bae2-000d3a1cd9e6
+adx_entitypermissionid: 4cc534df-0534-41c4-b837-2ee744839d16
+adx_parententitypermission: 
+adx_parentrelationship: 
+adx_read: true
+adx_scope: 756150000
+adx_write: false

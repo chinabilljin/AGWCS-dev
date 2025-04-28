@@ -1,0 +1,13 @@
+adx_append: false
+adx_appendto: false
+adx_create: false
+adx_delete: false
+adx_entitylogicalname: msdyn_richtextfile
+adx_entityname: Rich Text Files
+adx_entitypermission_webrole:
+- 3d467292-e4f9-ef11-be1f-000d3a1cd9e6
+- ff36659e-e4f9-ef11-be1f-000d3a1cd9e6
+adx_entitypermissionid: a1549e85-c813-f011-9989-000d3a1cd9e6
+adx_read: true
+adx_scope: 756150000
+adx_write: false

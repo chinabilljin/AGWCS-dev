@@ -1,0 +1,479 @@
+- adx_name: ASP/Course/Form/Validation/Field/Days
+  adx_sitesettingid: 01467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Days
+- adx_name: ASP/Course/Form/Validation/Field/EndTime
+  adx_sitesettingid: 01f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: End time
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ClientId
+  adx_sitesettingid: 032bc8d1-8013-407d-a347-03886bd0f28d
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Authentication/OpenAuth/Facebook/AppSecret
+  adx_sitesettingid: 08f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_description: Site setting that determines if the language code is included in the portal URL.
+  adx_name: MultiLanguage/DisplayLanguageCodeInURL
+  adx_sitesettingid: 09f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: False
+- adx_name: ASP/Course/Form/Validation/Field/MaxCapacityNumber
+  adx_sitesettingid: 0b467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Max capacity must be a whole number.
+- adx_name: Authentication/Registration/EmailConfirmationEnabled
+  adx_sitesettingid: 0ff16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: Search/IndexNotesAttachments
+  adx_sitesettingid: 1137659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_description: Determines if faceted search is used for this portal.
+  adx_name: Search/FacetedView
+  adx_sitesettingid: 13f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: True
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ResponseMode
+  adx_sitesettingid: 157a9007-b296-45f2-a904-b2de2ed4c9d9
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Authentication/OpenIdConnect/OPENID_2/PostLogoutRedirectUri
+  adx_sitesettingid: 158b241f-6b8c-4ff0-a93d-f3f47bca8fe7
+  adx_value: https://agwcsdev.powerappsportals.com
+- adx_description: Set whether the footer web template is output cached.
+  adx_name: Footer/OutputCache/Enabled
+  adx_sitesettingid: 15f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: True
+- adx_name: ASP/Course/Form/Validation/Field/Level
+  adx_sitesettingid: 1837659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Level
+- adx_name: ThemeFeature
+  adx_selectedThemeId: df88c9ca-e24f-4eca-af9a-880e7b8559a0
+  adx_sitesettingid: 18467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_siteSettingId: 18467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_status: enable
+  adx_version: V2
+- adx_description: A true or false value. If set to true, the Last Successful Login field on the portal user’s contact will be updated with the date and time when they successfully signed in.
+  adx_name: Authentication/LoginTrackingEnabled
+  adx_sitesettingid: 1a37659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: False
+- adx_name: Webapi/msdynce_course/fields
+  adx_sitesettingid: 1af06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: '*'
+- adx_description: Enabling this setting will show all customer activity on the portal timeline.
+  adx_name: CustomerSupport/DisplayAllUserActivitiesOnTimeline
+  adx_sitesettingid: 1df06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_description: Setting controls whether attachments will be displayed on Knowledge articles
+  adx_name: KnowledgeManagement/DisplayNotes
+  adx_sitesettingid: 1f467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_name: Site/BootstrapV5Enabled
+  adx_sitesettingid: 24f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_description: A true or false value. If set to true, the local account will be marked as deprecated. The portal user will be required to migrate to a non-deprecated account.
+  adx_name: Authentication/Registration/LocalLoginDeprecated
+  adx_sitesettingid: 25467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: False
+- adx_name: Authentication/OpenIdConnect/OPENID_2/ClientId
+  adx_sitesettingid: 27f22f0c-1c51-421a-8e4a-75e8c221a311
+  adx_value: e1ba973d-d30d-469c-9024-e4d7e0def922
+- adx_name: ASP/Course/Form/Validation/Field/EndTimeBeforeStartTime
+  adx_sitesettingid: 29f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: End time can't come before the start time.
+- adx_name: Authentication/OpenIdConnect/OPENID_2/ResponseType
+  adx_sitesettingid: 2b41d849-dc90-437f-832b-47c585e5a4ab
+  adx_value: code id_token
+- adx_name: ASP/Course/Form/Validation/Field/StartDate
+  adx_sitesettingid: 2b467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Start date
+- adx_name: Webapi/msdyn_richtextfile/enabled
+  adx_sitesettingid: 2cd522b5-c813-f011-9989-000d3a1cd9e6
+  adx_source: 0
+  adx_value: true
+- adx_name: ASP/Course/Form/Validation/Field/StartDateInFuture
+  adx_sitesettingid: 2cf16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Start date cannot be in the past
+- adx_name: ASP/Course/Form/Validation/Field/Format
+  adx_sitesettingid: 2df06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Format
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ValidateIssuer
+  adx_sitesettingid: 2ffd00a9-9672-433b-80b6-16d62a2d2742
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Webapi/msdynce_course/enabled
+  adx_sitesettingid: 3237659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: Authentication/OpenIdConnect/OPENID_2/Scope
+  adx_sitesettingid: 3280235a-aa2f-4c98-9a4e-08930738ec01
+  adx_value: openid email profile
+- adx_name: ASP/Icon/Validation/Error
+  adx_sitesettingid: 3437659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: /validation-icon.svg
+- adx_name: Authentication/OpenAuth/Microsoft/ClientId
+  adx_sitesettingid: 3637659e-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Webapi/adx_webrole/enabled
+  adx_sitesettingid: 36467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ObjectIdentifierAsNameIdentifierClaimEnabled
+  adx_sitesettingid: 3829a3bc-a1fc-ef11-bae2-000d3a1cd9e6
+  adx_source: 0
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_description: 'The amount of time the Authentication/LoginThrottling/MaxInvaildAttemptsFromIPAddress are to be within before the IP address has to wait Authentication/LoginThrottling/IpAddressTimeoutTimeSpan. Default: 00:03:00 (3 mins)'
+  adx_name: Authentication/LoginThrottling/MaxAttemptsTimeLimitTimeSpan
+  adx_sitesettingid: 39f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 00:03:00
+- adx_name: Authentication/OpenIdConnect/OPENID_2/MetadataAddress
+  adx_sitesettingid: 3b3e0621-a42a-4896-a2f8-3d07c420cbcb
+  adx_value: https://agwcs2.ciamlogin.com/c53bdb35-ca0e-4ff3-a4c5-55c63f9e6fe3/v2.0/.well-known/openid-configuration
+- adx_name: Authentication/OpenAuth/Twitter/ConsumerKey
+  adx_sitesettingid: 3c37659e-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Webapi/error/innererror
+  adx_sitesettingid: 3e467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: HTTP/X-Frame-Options
+  adx_sitesettingid: 41f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: SAMEORIGIN
+- adx_name: Authentication/Registration/OpenRegistrationEnabled
+  adx_sitesettingid: 4437659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: ASP/Course/ProcessingMessage
+  adx_sitesettingid: 48f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Processing...
+- adx_name: ASP/Course/Form/Validation/Field/StartTime
+  adx_sitesettingid: 49f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Start time
+- adx_name: Authentication/OpenIdConnect/AzureADMultiTenant/ObjectIdentifierAsNameIdentifierClaimEnabled
+  adx_sitesettingid: 4a00fb5e-a0fc-ef11-bae2-000d3a1cd9e6
+  adx_source: 0
+  adx_value: true
+- adx_description: 'The default number of unauthenticated login attempts from an IP address before the IP address is blocked for Authentication/LoginThrottling/IpAddressTimeoutTimeSpan if the attempts occur within Authentication/LoginThrottling/MaxAttemptsTimeLimitTimeSpan amount of time. Default: 1000'
+  adx_name: Authentication/LoginThrottling/MaxInvaildAttemptsFromIPAddress
+  adx_sitesettingid: 4af16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 1000
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/Authority
+  adx_sitesettingid: 4b2bde3d-d4cf-42c4-89de-444dc79363f7
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/UseTokenLifetime
+  adx_sitesettingid: 4cae83fa-0236-4d8f-b743-853a555ab847
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_description: C1 home page
+  adx_name: C1/Home
+  adx_sitesettingid: 4df06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: /admin-home
+- adx_name: Authentication/OpenIdConnect/AzureAD/Caption
+  adx_sitesettingid: 4e3d7bc3-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Microsoft Entra ID
+- adx_description: Used to group a set of entities under an entry in the record type facet view.
+  adx_name: Search/RecordTypeFacetsEntities
+  adx_sitesettingid: 4f467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Downloads:annotation,adx_webfile
+- adx_name: Authentication/OpenIdConnect/OPENID_2/ValidateIssuer
+  adx_sitesettingid: 4f849cf8-2b6a-4fc1-a0ca-a49e90096361
+  adx_value: false
+- adx_name: Authentication/OpenIdConnect/AzureAD/RebrandDisclaimerEnabled
+  adx_sitesettingid: 503d7bc3-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_name: ASP/Course/Form/Validation/Field/EndDate
+  adx_sitesettingid: 53467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: End date
+- adx_name: Authentication/Registration/ExternalLoginEnabled
+  adx_sitesettingid: 53f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ExternalLogoutEnabled
+  adx_sitesettingid: 5426c54d-135b-4d53-b4b8-b3176fa6792b
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Search/EnableGenerativeAI
+  adx_sitesettingid: 543d7bc3-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: True
+- adx_name: Authentication/Registration/Enabled
+  adx_sitesettingid: 54f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: Card/ChildFiller
+  adx_sitesettingid: 55467292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: /child-filler.svg
+- adx_name: Authentication/OpenAuth/Twitter/ConsumerSecret
+  adx_sitesettingid: 57f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Search/IndexQueryName
+  adx_sitesettingid: 5bf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Portal Search
+- adx_name: WebAPI/enableReadOperationPreview
+  adx_sitesettingid: 5bf16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: Webapi/adx_webrole/fields
+  adx_sitesettingid: 5cf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: adx_name,adx_webroleid
+- adx_name: Authentication/OpenIdConnect/OPENID_2/UseTokenLifetime
+  adx_sitesettingid: 5e1bd8b3-a441-4379-85f8-739e25f291fa
+  adx_value: false
+- adx_name: Payments/Stripe/UseAzureKeyVault
+  adx_sitesettingid: 5fedd1a9-4b40-4e6d-a4a0-4311e4ab7177
+  adx_value: true
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/PostLogoutRedirectUri
+  adx_sitesettingid: 62d80476-f33b-4c9e-a2aa-2c8f9e879708
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Authentication/OpenIdConnect/OPENID_2/RedirectUri
+  adx_sitesettingid: 64c3c8e3-167f-4c7e-911f-41e5a1d2ee2d
+  adx_value: https://agwcsdev.powerappsportals.com/signin-openid_2
+- adx_description: Site setting that controls the depth of the webpage hierarchy that’s cloned in a newly-added supported language. Web link sets and content snippets are cloned in the newly-added language when webpages are cloned.
+  adx_name: MultiLanguage/MaximumDepthToClone
+  adx_sitesettingid: 66f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 3
+- adx_name: ASP/Pagination/CardsPerPage
+  adx_sitesettingid: 6a37659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 18
+- adx_description: Denies use of the portal to minors without parental consent. By default, it is set to false.
+  adx_name: Authentication/Registration/DenyMinorsWithoutParentalConsent
+  adx_sitesettingid: 6df06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/AllowContactMappingWithEmail
+  adx_sitesettingid: 6f5c4113-5e91-4c89-b421-1c7d877c5920
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_description: Set whether the header web template is output cached.
+  adx_name: Header/OutputCache/Enabled
+  adx_sitesettingid: 7037659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_source: 0
+  adx_value: True
+- adx_name: ASP/Pagination/PagesInLine
+  adx_sitesettingid: 74a564a4-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 6
+- adx_name: Webapi/pp_payment/fields
+  adx_sitesettingid: 7be01887-200c-f011-bae1-000d3a1cd9e6
+  adx_source: 0
+  adx_value: '*'
+- adx_name: ASP/Course/Form/Validation/Field/DescriptionToLong
+  adx_sitesettingid: 8037659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Description can't be longer than 1000 characters.
+- adx_name: ASP/Course/Form/Validation/Field/MaxCapacityLow
+  adx_sitesettingid: 82f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Max capacity should be higher than 1.
+- adx_name: Authentication/OpenAuth/Facebook/AppId
+  adx_sitesettingid: 83f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: ASP/Course/Form/Validation/Field/Deadline
+  adx_sitesettingid: 84a564a4-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Deadline
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/RPInitiatedLogout
+  adx_sitesettingid: 866ddfd3-6d8f-413e-851c-933eb791a660
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Authentication/OpenIdConnect/OPENID_2/AllowContactMappingWithEmail
+  adx_sitesettingid: 86b69ba9-4b15-4a5b-beec-78a1c1ace3eb
+  adx_source: 0
+  adx_value: true
+- adx_name: Payments/Stripe/AzureKeyVaultSettings
+  adx_sitesettingid: 86e43bc2-c6b0-4d4e-a106-1eac173ca3a6
+  adx_value: >-
+    {
+              "publishableKey": "pk_live_51R0yQgGxtKx93i8O6PfQYaS6bt7DJaNHD3ubGiiTlEqT7Tew2SGVjU7py8uC82xISg7sOXhsiO976hqmFEvMkqrJ001gvSWSe1",
+              "azureKeyVaultName": "Stripe02",
+              "secretName": "Key0321"
+            }
+- adx_name: ASP/Course/Form/Validation/Field/ClassName
+  adx_sitesettingid: 88ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Class name
+- adx_name: Authentication/OpenIdConnect/OPENID_2/RPInitiatedLogout
+  adx_sitesettingid: 898d8486-523d-4140-82d0-27d57a23169c
+  adx_value: false
+- adx_name: ASP/Pagination/CardsPerRow
+  adx_sitesettingid: 8a37659e-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 3
+- adx_name: ASP/Course/Form/Validation/Field/Required
+  adx_sitesettingid: 90a564a4-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 'Missing required fields:'
+- adx_name: ASP/Course/Form/Validation/Field/MaxCapacity
+  adx_sitesettingid: 92a564a4-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Max capacity
+- adx_name: Authentication/Registration/LocalLoginEnabled
+  adx_sitesettingid: 92f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_filecontent: 
+  adx_name: Authentication/Registration/LoginButtonAuthenticationType
+  adx_sitesettingid: 92f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: https://agwcs2.ciamlogin.com/c53bdb35-ca0e-4ff3-a4c5-55c63f9e6fe3/
+- adx_name: Authentication/OpenIdConnect/OPENID_2/ValidateAudience
+  adx_sitesettingid: 945cdaf0-a2c1-4b6c-9f89-b645cd4e7697
+  adx_value: false
+- adx_name: Webapi/adx_webrole_contact/fields
+  adx_sitesettingid: 99f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: '*'
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ValidateAudience
+  adx_sitesettingid: 9c7d0b1e-3028-42a3-ae87-3b350f2b6f47
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Authentication/OpenIdConnect/OPENID_2/ExternalLogoutEnabled
+  adx_sitesettingid: 9ecd847c-964f-417d-a314-0c8b3670af31
+  adx_value: true
+- adx_name: Authentication/OpenIdConnect/AzureAD/ObjectIdentifierAsNameIdentifierClaimEnabled
+  adx_sitesettingid: a005ee98-a1fc-ef11-bae2-000d3a1cd9e6
+  adx_source: 0
+  adx_value: true
+- adx_name: OnlineDomains
+  adx_sitesettingid: a3f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: sharepoint.com;microsoftonline.com
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/RedirectUri
+  adx_sitesettingid: a8309c6e-ca6b-46e8-93d6-4af6731eca67
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Authentication/OpenIdConnect/OPENID_2/Authority
+  adx_sitesettingid: aa45cef2-284c-4ee4-81d0-6e419ad22f8a
+  adx_value: https://agwcs2.ciamlogin.com/c53bdb35-ca0e-4ff3-a4c5-55c63f9e6fe3/
+- adx_name: Authentication/OpenAuth/LinkedIn/ConsumerSecret
+  adx_sitesettingid: abf16c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Webapi/contact/enabled
+  adx_sitesettingid: adf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_description: A date/time value in GMT format to represent the effective date of the current published terms and conditions. If the terms agreement is enabled, portal users that have not accepted the terms after this date will be asked to accept them the next time they sign in. If the date is not provided, and the terms agreement is enabled, the terms will be presented every time portal users sign in.
+  adx_name: Authentication/Registration/TermsPublicationDate
+  adx_sitesettingid: aff06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Webapi/adx_webrole_contact/enabled
+  adx_sitesettingid: aff16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: Search/Enabled
+  adx_sitesettingid: b5f16c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_name: Webapi/contact/fields
+  adx_sitesettingid: b6ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: '*'
+- adx_name: Authentication/OpenIdConnect/OPENID_2/ResponseMode
+  adx_sitesettingid: b76eebfb-26c6-4bcc-8e75-bbcff3418fa2
+  adx_value: form_post
+- adx_name: Profile/ForceSignUp
+  adx_sitesettingid: b9f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: False
+- adx_description: 'The amount of time the IP address will have to wait if Authentication/LoginThrottling/MaxInvaildAttemptsFromIPAddress occur within Authentication/LoginThrottling/MaxAttemptsTimeLimitTimeSpan amount of time. Default: 00:10:00 (10 mins)'
+  adx_name: Authentication/LoginThrottling/IpAddressTimeoutTimeSpan
+  adx_sitesettingid: c1f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 00:10:00
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/MetadataAddress
+  adx_sitesettingid: c6e5f0bf-6702-4a89-9dd1-1780e06c67ac
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Profile/ShowMarketingOptionsPanel
+  adx_sitesettingid: c8ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: True
+- adx_name: ASP/Course/Form/Validation/Field/EndDateBeforeStartDate
+  adx_sitesettingid: cbef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: End date can't come before the start date.
+- adx_description: Sets whether or not the portal can redirect the user to the profile page after successful sign-in. By default, it is set to true.
+  adx_name: Authentication/Registration/ProfileRedirectEnabled
+  adx_sitesettingid: d0f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_name: Webapi/msdynce_registration/fields
+  adx_sitesettingid: d2457292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: '*'
+- adx_name: Payments/Stripe/WebhookSecret
+  adx_sitesettingid: d30a232f-fafd-ef11-bae2-000d3a1cd9e6
+  adx_value: whsec_FCR0QkfuDuPRWtkrpdWlwRYtpJ4BTLk0
+- adx_name: Payments/Stripe/WebhookSecret
+  adx_sitesettingid: d40a232f-fafd-ef11-bae2-000d3a1cd9e6
+  adx_value: whsec_MbXIhOShTPQu7Xq30jExpwroJL8BiGGT
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/ResponseType
+  adx_sitesettingid: d66d3152-1067-48f2-b561-bf7a21abc9a8
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_name: Payments/Stripe/WebhookId
+  adx_sitesettingid: d70a232f-fafd-ef11-bae2-000d3a1cd9e6
+  adx_value: we_1R1EGvGxtKx93i8OmmQAtVii
+- adx_name: Webapi/pp_payment/enabled
+  adx_sitesettingid: d744797b-200c-f011-bae1-000d3a1cd9e6
+  adx_source: 0
+  adx_value: true
+- adx_name: Payments/Stripe/WebhookId
+  adx_sitesettingid: d80a232f-fafd-ef11-bae2-000d3a1cd9e6
+  adx_value: we_1R1EGwGxtKx93i8OekIcaX5T
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/Scope
+  adx_sitesettingid: d94c01dd-1d64-493d-a8e2-8d58145f128c
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_filecontent: 
+  adx_name: Authentication/OpenIdConnect/OPENID_1/Caption
+  adx_sitesettingid: df1e00fe-f9d0-47fe-9b63-993cd11527b0
+  adx_value: ''
+  statecode: 1
+  statuscode: 2
+- adx_description: Denies use of the portal to minors. By default, it is set to false.
+  adx_name: Authentication/Registration/DenyMinors
+  adx_sitesettingid: e4ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_description: Enables or disables Azure AD as an external identity provider. By default, it is set to true.
+  adx_filecontent: 
+  adx_name: Authentication/Registration/AzureADLoginEnabled
+  adx_sitesettingid: e5ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_description: 'The Prefix entered here will be used to filter Notes Text, allowing you to control notes exposed on the Portal ex: *WEB*'
+  adx_name: KnowledgeManagement/NotesFilter
+  adx_sitesettingid: e7f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: '*WEB*'
+- adx_name: Webapi/msdynce_registration/enabled
+  adx_sitesettingid: e8ef6c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: true
+- adx_description: >-
+    A collection of search logical name filter options. Defining a value here will add dropdown filter options to site-wide search.
+
+
+    This value should be in the form of name/value pairs, with name and value separated by a colon, and pairs separated by a semicolon. For example: "Forums:adx_communityforum,adx_communityforumthread,adx_communityforumpost;Blogs:adx_blog,adx_blogpost,adx_blogpostcomment".
+  adx_name: search/filters
+  adx_sitesettingid: e9457292-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Authentication/OpenIdConnect/OPENID_2/Caption
+  adx_sitesettingid: e9fc08ff-faf3-443a-be7d-afc6b8465db5
+  adx_value: Microsoft Entra External ID
+- adx_description: 'Override query for site search, to apply additional weights and filters. @Query is the query text entered by a user. Lucene query syntax reference: http://lucene.apache.org/core/old_versioned_docs/versions/2_9_1/queryparsersyntax.html'
+  adx_name: search/query
+  adx_sitesettingid: ebf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: +(@Query) _title:(@Query) _logicalname:knowledgearticle~0.9^0.3 _logicalname:annotation~0.9^0.25 _logicalname:adx_webpage~0.9^0.2 -_logicalname:adx_webfile~0.9 adx_partialurl:(@Query) _logicalname:adx_blogpost~0.9^0.1 -_logicalname:adx_communityforumthread~0.9
+- adx_name: ASP/Course/Form/Validation/Field/Category
+  adx_sitesettingid: ecf06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: Category
+- adx_name: UserTrace/Debug
+  adx_sitesettingid: eed2e4ed-9e02-f011-bae2-000d3a1cd9e6
+  adx_source: 0
+  adx_value: true
+- adx_name: Authentication/Registration/InvitationEnabled
+  adx_sitesettingid: f2457292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_source: 0
+  adx_value: false
+- adx_name: Webapi/msdyn_richtextfile/fields
+  adx_sitesettingid: f2df1fbb-c813-f011-9989-000d3a1cd9e6
+  adx_source: 0
+  adx_value: '*'
+- adx_description: A true or false value. If set to true, the portal will display the terms and conditions of the site. Users must agree to the terms and conditions before they are considered authenticated and can use the site.
+  adx_name: Authentication/Registration/TermsAgreementEnabled
+  adx_sitesettingid: f3457292-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: false
+- adx_name: Authentication/OpenAuth/Microsoft/ClientSecret
+  adx_sitesettingid: f3f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Authentication/OpenAuth/LinkedIn/ConsumerKey
+  adx_sitesettingid: f6457292-e4f9-ef11-be1f-000d3a1cd9e6
+- adx_name: Metadata/Template-Version
+  adx_sitesettingid: f9f06c98-e4f9-ef11-be1f-000d3a1cd9e6
+  adx_value: 1.2304.1.0

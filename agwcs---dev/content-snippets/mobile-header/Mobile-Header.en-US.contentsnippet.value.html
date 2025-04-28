@@ -1,0 +1,18 @@
+<style>
+    .siteTitle {
+        white-space: normal !important;     /* Allow wrapping */
+        overflow-wrap: break-word;          /* Wrap long words */
+        word-break: break-word;             /* Force breaking if needed */
+        display: block;                     /* Ensures it behaves like a block element */
+        }
+
+</style>
+
+<a href="~/">
+    {% if snippets['Logo URL'] %}
+        <img src="{{ snippets['Logo URL'] }}" alt="{{ snippets['Logo alt text'] }}" style="width: auto; height: 32px; margin: 0 10px;">
+    {% endif %} 
+    {% if snippets['Site name'] %}
+        <h1 class="siteTitle">{{ snippets['Site name'] }}</h1>
+    {% endif %}
+</a>

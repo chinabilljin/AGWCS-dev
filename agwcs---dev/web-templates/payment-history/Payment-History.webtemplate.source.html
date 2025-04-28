@@ -1,0 +1,207 @@
+{% include 'Portal Web API Wrapper' %}
+{% if user %}
+<!-- ───────────────────────────────────────────────────────────
+     1.  FETCH PAID PAYMENTS FOR THIS USER
+────────────────────────────────────────────────────────────── -->
+{% fetchxml payment_data %}
+<fetch>
+  <entity name="pp_payment">
+    <attribute name="pp_amount" />
+    <attribute name="pp_paymenttime" />
+    <attribute name="pp_provider" />
+    <attribute name="pp_paymentidentifier" />
+    <filter type="and">
+      <condition attribute="pp_user" operator="eq" value="{{ user.contactid }}" />
+      <condition attribute="pp_paymentstatus" operator="eq" value="3" />
+    </filter>
+    <order attribute="pp_paymenttime" descending="true" />
+  </entity>
+</fetch>
+{% endfetchxml %}
+
+{% assign provider_labels = "0:Online (Stripe),1:Cash,2:Check,3:Zelle,4:Free credit,5:Other" | split: ',' %}
+
+<!-- ───────────────────────────────────────────────────────────
+     2.  PAYMENT TABLE
+────────────────────────────────────────────────────────────── -->
+<style>
+.payment-table-container{max-height:300px;overflow-y:auto;border:1px solid #ddd;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,.05);margin-bottom:12px}
+table.payment-table{width:100%;border-collapse:collapse;font-family:'Segoe UI',Tahoma,sans-serif}
+.payment-table th,.payment-table td{padding:12px 16px;border-bottom:1px solid #eee;font-size:14px;text-align:left}
+.payment-table th{background:#f8f9fa;font-weight:600;color:#333}
+.payment-row:hover{background:#f1f1f1;cursor:pointer}
+.payment-row.selected{background:#dff0d8!important}
+#downloadReceiptBtn{display:none;margin-top:8px}
+</style>
+
+{% if payment_data.results.entities.size > 0 %}
+  <p>Your payment history:</p>
+  <p style="font-size:0.85rem;">Choose payment to download receipt</p>
+  <div class="payment-table-container">
+    <table class="payment-table">
+      <thead><tr><th>Date</th><th>Amount</th><th>Method</th><th>Payment Id</th></tr></thead>
+      <tbody>
+        {% for p in payment_data.results.entities %}
+          {% assign lbl = '' %}
+          {% for map in provider_labels %}
+            {% assign parts = map | split:':' %}
+            {% if parts[0] == p.pp_provider.value %}{% assign lbl = parts[1] %}{% endif %}
+          {% endfor %}
+          <tr class="payment-row"
+              data-id="{{ p.pp_paymentidentifier }}"
+              data-amt="{{ p.pp_amount | round:2 }}"
+              data-date="{{ p.pp_paymenttime | date:'yyyy-MM-dd' }}"
+              data-provider="{{ lbl }}">
+            <td><span class="local-time" data-utc="{{ p.pp_paymenttime | date:'yyyy-MM-ddTHH:mm:ssZ' }}"></span></td>
+            <td>{{ p.pp_amount | round:2 }}</td>
+            <td>{{ lbl }}</td>
+            <td>{{ p.pp_paymentidentifier }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <button id="downloadReceiptBtn" type="button">Download receipt</button>
+{% else %}
+  <p>No paid payments found.</p>
+{% endif %}
+{% endif %}
+
+<!-- ───────────────────────────────────────────────────────────
+     3.  SCRIPTS
+────────────────────────────────────────────────────────────── -->
+<!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+-->
+<script>
+
+document.addEventListener('DOMContentLoaded',()=>{
+
+  /* —— Convert stored UTC times to CDT —— */
+  document.querySelectorAll('.local-time').forEach(el=>{
+    const d=new Date(el.dataset.utc);
+    el.textContent=d.toLocaleString('en-US',
+      {timeZone:'America/Chicago',year:'numeric',month:'2-digit',day:'2-digit',
+       hour:'2-digit',minute:'2-digit',hour12:false}).replace(',','');
+  });
+
+  const rows=document.querySelectorAll('.payment-row');
+  const btn=document.getElementById('downloadReceiptBtn');
+  let selected=null, courseHtmlCache=null;
+
+  /* —— Row click → highlight + enable button —— */
+  rows.forEach(r=>{
+    r.addEventListener('click',()=>{
+      rows.forEach(x=>x.classList.remove('selected'));
+      r.classList.add('selected');
+      btn.style.display='inline-block';
+      selected={
+        id:r.dataset.id,
+        amt:r.dataset.amt,
+        date:r.dataset.date,
+        provider:r.dataset.provider
+      };
+    });
+  });
+
+  /* —— Button click → build receipt, save .html, then save .pdf —— */
+  btn.addEventListener('click',async()=>{
+    if(!selected)return;
+
+    const btn=document.getElementById('downloadReceiptBtn');
+    btn.disabled = true;
+    btn.innerText = "  Wait...  ";
+
+    /* ── (A) Pull courses for ±12 months (cache after 1st call) ── */
+    if (!courseHtmlCache) {
+  // …date math & console.log…
+
+        webapi.safeAjax({
+            type: "GET",
+            url:
+            "/_api/msdynce_registrations?" +
+            "$select=msdynce_courseenddate,msdynce_coursestartdate,msdynce_name" +
+            "&$filter=(_msdynce_parent_value eq {{ user.contactid }} and statecode eq 0)",
+            contentType: "application/json",
+            headers: { Prefer: "odata.include-annotations=*"},
+            success: function (data) {
+                console.log("API call success");
+
+                if (data.value) {
+
+                    courseHtmlCache = data.value
+                    .map(c => `<li>${c.msdynce_name} (${getDateOnly(c.msdynce_coursestartdate)} to ${getDateOnly(c.msdynce_courseenddate)}) </li>`)
+                    .join("");
+
+                    saveReceipt();          // call once after list is assembled
+                }
+                },
+            error: function (xhr) { console.log(xhr); }
+
+        });
+    } else {
+        saveReceipt();                // use the cached markup
+    }
+
+
+
+    function saveReceipt(){
+        /* ── (B) Compose receipt markup ── */
+        
+        const origin = window.location.origin;
+        
+
+        const todayStr=new Date().toISOString().split('T')[0];
+        const receiptHTML=`<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+        <title>AGWCS Tuition Receipt</title></head><body>
+        <div style="font-family:Arial,sans-serif;padding:20px;max-width:700px;margin:auto;">
+            <div style="display:flex;justify-content:space-between;border:1px solid #DEE2E6;padding:10px;">
+            <img src="${origin}/invoice_logo.jpg" style="height:50px" alt="logo">
+            <div style="font-size:18px;font-weight:bold">AGWCS PAYMENT RECEIPT</div>
+            </div>
+            <table style="width:100%;border-collapse:collapse;margin-top:20px;">
+            <tr><td style="font-weight:bold;">Date</td><td>${todayStr}</td></tr>
+            <tr><td style="font-weight:bold;">Receipt#</td><td>${selected.id}</td></tr>
+            <tr><td style="font-weight:bold;">AGWCS</td>
+                <td>EIN# 74‑2718929<br>AGWCS, PO Box 200964, Austin TX 78720<br>board@agwcs.org<br>(512) 436‑3739</td></tr>
+            <tr><td style="font-weight:bold;">Paid by</td><td>{{ user.fullname | escape }}</td></tr>
+            <tr><td style="font-weight:bold;">Paid through</td><td>${selected.provider}</td></tr>
+            <tr><td style="font-weight:bold;">Amount</td><td>$${selected.amt}</td></tr>
+            <tr><td style="font-weight:bold;">Pay Date</td><td>${selected.date}</td></tr>
+            <tr><td style="font-weight:bold;">Courses</td>
+                <td><ul style="margin:0 0 0 20px">${courseHtmlCache}</ul></td></tr>
+            </table>
+        </div></body></html>`;
+
+        /* ── (C) Save .html file first ── */
+        const htmlBlob=new Blob([receiptHTML],{type:'text/html'});
+        const htmlURL=URL.createObjectURL(htmlBlob);
+        const link=document.createElement('a');
+        link.href=htmlURL;
+        link.download=`AGWCS_Receipt_${selected.id}.html`;
+        document.body.appendChild(link);
+        link.click();
+        //document.body.removeChild(link);
+        //URL.revokeObjectURL(htmlURL);
+
+        /* ── (D) Then save PDF ── */
+        /*
+        html2pdf().from(receiptHTML).set({
+        margin:0.5,
+        filename:`AGWCS_Receipt_${selected.id}.pdf`,
+        html2canvas:{scale:2},
+        jsPDF:{unit:'in',format:'letter',orientation:'portrait'}
+        }).save();
+        */
+
+        const btn=document.getElementById('downloadReceiptBtn');
+        btn.disabled = false;
+        btn.innerText = "Download receipt";
+    }
+
+    function getDateOnly(datetimeStr) {
+        return datetimeStr?.split('T')[0]?.split(' ')[0] || '-';
+    }
+  });
+});
+</script>

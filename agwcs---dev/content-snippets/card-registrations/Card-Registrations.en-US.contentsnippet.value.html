@@ -1,0 +1,96 @@
+{% assign today = now | date: "d" %}
+
+<!-- 4/7/2025 -->
+<!-- CHANGE to split register and unregister deadline , so change registration.deadline to registration.canceldeadline
+{% assign deadline = registration.deadline | date: "d" %}
+-->
+<!-- If canceldeadline is not set, set it as the same as the registration deadline -->
+{% if registration.canceldeadline %}
+    {% assign deadline = registration.canceldeadline | date: "d" %}
+{% else %}
+    {% assign deadline = registration.deadline | date: "d" %}
+{% endif %}
+
+<div class="col-md-12 registration-card-col" id="card-{{registration.msdynce_registrationid}}">
+    <div class="card course-card flex-card">
+        <div class="row card-body" data-component-theme="portalThemeColor5">
+                <div class="card-flex-left">
+                    <div class="course-days">
+                        {{dayvalues}}
+                    </div>
+                <div class="title-container">
+                    <p class="card-text-large"> {{registration.coursename}} </p>
+                </div>
+                <div class="sub-flex-content">
+                    <div class="sub-left">
+                    <img id="imgfull-{{registration.parent}}-{{registration.msdynce_registrationid}}" data-attendee="{{registration.msdynce_attendeename.id}}" src="{{ settings['Card/ChildFiller']}}" alt="{{registration.fullname}} profile photo">
+                    <p class="card-text-xsmall text-center">{{registration.fullname}}</p>
+                    </div>
+                    <div class="sub-right">
+                        <p class="card-text-medium"> ${{registration.cr635_fee | round: 2}} </p>
+                        {%comment%}
+                                <p class="card-text-medium card-time"> {{registration.coursestart | date: 't' }} to {{registration.courseend | date: 't'}} CDT</p>
+                        {%endcomment%}
+             
+                        {% if registration.cr635_coursedatetimedetails %}
+                            <span class="card-text-medium card-time"> {{ course.cr635_coursedatetimedetails }}</span>
+                        {% else %}
+                            <p class="card-text-medium card-time"> {{registration.coursestart | date: 't' }} to {{registration.courseend | date: 't'}} CDT</p>
+                        {% endif %}
+            
+                        
+                        
+                        
+                        <p class="card-text-xsmall card-day"> {{registration.coursestart | date: 'MMMM dd'}} - {{registration.courseend | date: 'MMMM dd'}} </p>
+
+                      <div class="course-type">
+                            {{typeValues}} 
+                        </div>
+
+
+                        {% if today < deadline %}
+                            <button type="button" class="btn-link" data-bs-toggle="modal" 
+                                data-bs-target="#unregisterModal" 
+                                onclick="showUnregisterModal('{{ registration.msdynce_registrationid }}')">
+                                Cancel registration
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn-link" disabled>
+                                Cancellation expired
+                            </button>
+                            <p class="card-text-xsmall text-center">Please contact board@agwcs.org if you want to cancel.</p>
+                        {% endif %}
+{%comment%}
+                        <button type="button" id="unregisterButton-{{registration.msdynce_registrationid}}" class="btn-link" data-bs-toggle="modal" data-bs-target="#unregisterModal" onclick="showUnregisterModal('{{registration.msdynce_registrationid}}')">Cancel registration</button>
+{%endcomment%}        
+                    </div>
+                </div>
+                </div>
+                <div class="card-flex-right" id="div{{registration.msdynce_registrationid}}" data-regid="{{registration.msdynce_registrationid}}" data-courseid="{{registration.course}}">                            
+                    <div class="mobile-right">
+                        <img id="img-{{registration.msdynce_attendeename}}" data-attendee="{{registration.msdynce_attendeename.id}}" src="{{ settings['Card/ChildFiller']}}" alt="{{registration.fullname}} profile photo">
+                        <p class="card-text-xsmall text-center">{{registration.fullname}}</p>
+
+                        
+
+                        {% if today < deadline %}
+                            <button type="button" class="btn-link" data-bs-toggle="modal" 
+                                data-bs-target="#unregisterModal" 
+                                onclick="showUnregisterModal('{{ registration.msdynce_registrationid }}')">
+                                Cancel registration
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn-link" disabled>
+                                Cancellation expired
+                            </button>
+                            <p class="card-text-xsmall text-center">Please contact board@agwcs.org if you want to cancel.</p>
+                        {% endif %}
+
+
+
+
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  box-sizing: border-box;
+}
+
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-family: Arial, sans-serif;
+  min-width: 600px; /* Adjust if needed */
+}
+
+.custom-table th, .custom-table td {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  white-space: nowrap;
+}
+
+.custom-table thead {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #f1f1f1;
+}

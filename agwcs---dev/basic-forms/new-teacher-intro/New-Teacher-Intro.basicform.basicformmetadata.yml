@@ -1,0 +1,14 @@
+- adx_adddescription: false
+  adx_attributelogicalname: cr635_intro
+  adx_controlstyle: 756150001
+  adx_descriptionposition: 100000000
+  adx_entityform: eb125e4f-cd17-f011-9989-000d3a1cd9e6
+  adx_entityformforcreate: eb125e4f-cd17-f011-9989-000d3a1cd9e6
+  adx_entityformmetadataid: c03c2ddd-e317-f011-9989-000d3a1cd9e6
+  adx_fieldisrequired: false
+  adx_ignoredefaultvalue: false
+  adx_name: New Teacher Intro cr635_intro
+  adx_randomizeoptionsetvalues: false
+  adx_setvalueonsave: false
+  adx_type: 100000000
+  adx_useattributedescriptionproperty: true

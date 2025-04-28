@@ -1,0 +1,16 @@
+adx_editexistingrecordpermitted: true
+adx_filecontent: 
+adx_multiplerecordsperuserpermitted: true
+adx_name: Pay
+adx_progressindicatorenabled: true
+adx_progressindicatorposition: 756150000
+adx_progressindicatortype: 756150000
+adx_startnewsessiononload: true
+adx_startstep: 112b68a4-08da-409c-9d62-b719d6c525e6
+adx_webformid: f2142c96-d661-4eeb-9d66-62166fa39dc3
+adx_webFormSteps:
+- []
+- []
+- []
+- &o0 []
+- *o0
